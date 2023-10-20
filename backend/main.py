@@ -11,6 +11,9 @@ from db.customer_repository import (
 from models.customer import (
     Customer, CustomerCreateUpdate
 )
+from kafka.producer import (
+    publish_customer_created, publish_customer_updated, publish_customer_deleted
+)
 import uuid
 
 app = FastAPI()
@@ -44,7 +47,16 @@ def create_customer_api(customer: CustomerCreateUpdate, db: Session = Depends(ge
     '''
     try:
         db_customer = Customer(**customer.dict())
-        return create_customer(db, db_customer)
+        db_customer = create_customer(db, db_customer)
+
+        # Publish a customer created event
+        customer_data = {
+            'id': str(db_customer.id),
+            'name': db_customer.name,
+            'email': db_customer.email
+        }
+        publish_customer_created(customer_data)
+        return db_customer
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -121,7 +133,17 @@ def update_customer_api(customer_id: uuid.UUID, customer: CustomerCreateUpdate, 
         db_customer.id = customer_id
         if db_customer is None:
             raise HTTPException(status_code=404, detail="Customer not found")
-        return update_customer(db, db_customer, customer_id)
+        db_customer = update_customer(db, db_customer, customer_id)
+
+        # Publish a customer updated event
+        customer_data = {
+            'id': str(db_customer.id),
+            'name': db_customer.name,
+            'email': db_customer.email
+        }
+        publish_customer_updated(customer_data)
+
+        return db_customer
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -145,6 +167,13 @@ def delete_customer_api(customer_id: uuid.UUID, db: Session = Depends(get_db)):
     try:
         if not delete_customer(db, customer_id):
             raise HTTPException(status_code=404, detail="Customer not found")
+
+        # Publish a customer deleted event
+        customer_data = {
+            'id': str(customer_id)
+        }
+        publish_customer_deleted(customer_data)
+        
         return {"message": "Customer deleted"}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
