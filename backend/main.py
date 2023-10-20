@@ -53,7 +53,9 @@ def create_customer_api(customer: CustomerCreateUpdate, db: Session = Depends(ge
         customer_data = {
             'id': str(db_customer.id),
             'name': db_customer.name,
-            'email': db_customer.email
+            'email': db_customer.email,
+            'created_at': str(db_customer.created_at),
+            'updated_at': str(db_customer.updated_at)
         }
         publish_customer_created(customer_data)
         return db_customer
@@ -139,7 +141,9 @@ def update_customer_api(customer_id: uuid.UUID, customer: CustomerCreateUpdate, 
         customer_data = {
             'id': str(db_customer.id),
             'name': db_customer.name,
-            'email': db_customer.email
+            'email': db_customer.email,
+            'created_at': str(db_customer.created_at),
+            'updated_at': str(db_customer.updated_at)
         }
         publish_customer_updated(customer_data)
 

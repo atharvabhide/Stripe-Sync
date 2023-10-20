@@ -32,7 +32,9 @@ def publish_customer_created(customer):
     data = {
         'id': customer['id'],
         'name': customer['name'],
-        'email': customer['email']
+        'email': customer['email'],
+        'created_at': customer['created_at'],
+        'updated_at': customer['updated_at']
     }
     publish_customer_event('customer_created', data)
 
@@ -43,7 +45,9 @@ def publish_customer_updated(customer):
     data = {
         'id': customer['id'],
         'name': customer['name'],
-        'email': customer['email']
+        'email': customer['email'],
+        'created_at': customer['created_at'],
+        'updated_at': customer['updated_at']
     }
     publish_customer_event('customer_updated', data)
 
