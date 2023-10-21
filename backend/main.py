@@ -1,12 +1,13 @@
 from fastapi import (
     FastAPI, Depends, HTTPException, status
 )
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from db.database import (
     engine, SessionLocal, create_tables
 )
 from db.customer_repository import (
-    create_customer, get_customer, get_customers, update_customer, delete_customer
+    create_customer, get_customer, get_customers, update_customer, delete_customer, get_customer_from_email
 )
 from models.customer import (
     Customer, CustomerCreateUpdate
@@ -17,6 +18,14 @@ from kafka.producer import (
 import uuid
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     '''
@@ -63,13 +72,13 @@ def create_customer_api(customer: CustomerCreateUpdate, db: Session = Depends(ge
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.get("/customers/{customer_id}", status_code=status.HTTP_200_OK)
-def read_customer(customer_id: uuid.UUID, db: Session = Depends(get_db)):
+def read_customer(customer_id: str, db: Session = Depends(get_db)):
     '''
     Read a Customer
 
     Parameters
     ----------
-    customer_id : uuid.UUID
+    customer_id : str
         Customer id
     db: Session
         Database session
@@ -112,13 +121,13 @@ def read_customers(skip: int = 0, limit: int = 100, db: Session = Depends(get_db
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.put("/customers/{customer_id}", status_code=status.HTTP_200_OK)
-def update_customer_api(customer_id: uuid.UUID, customer: CustomerCreateUpdate, db: Session = Depends(get_db)):
+def update_customer_api(customer_id: str, customer: CustomerCreateUpdate, db: Session = Depends(get_db)):
     '''
     Update a Customer
 
     Parameters
     ----------
-    customer_id : uuid.UUID
+    customer_id : str
         Customer id
     customer : CustomerCreateUpdate
         Customer data
@@ -152,13 +161,13 @@ def update_customer_api(customer_id: uuid.UUID, customer: CustomerCreateUpdate, 
         raise HTTPException(status_code=400, detail=str(e))
 
 @app.delete("/customers/{customer_id}", status_code=status.HTTP_204_NO_CONTENT)
-def delete_customer_api(customer_id: uuid.UUID, db: Session = Depends(get_db)):
+def delete_customer_api(customer_id: str, db: Session = Depends(get_db)):
     '''
     Delete a Customer
 
     Parameters
     ----------
-    customer_id : uuid.UUID
+    customer_id : str
         Customer id
     db: Session
         Database session
@@ -179,6 +188,31 @@ def delete_customer_api(customer_id: uuid.UUID, db: Session = Depends(get_db)):
         publish_customer_deleted(customer_data)
         
         return {"message": "Customer deleted"}
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=str(e))
+
+@app.get("/get_id/{customer_email}", status_code=status.HTTP_200_OK)
+def get_customer_id(customer_email: str, db: Session = Depends(get_db)):
+    '''
+    Get a Customer id
+
+    Parameters
+    ----------
+    customer_email : str
+        Customer email
+    db: Session
+        Database session
+
+    Returns
+    -------
+    dict
+        Customer id
+    '''
+    try:
+        db_customer = get_customer_from_email(db, customer_email)
+        if db_customer is None:
+            raise HTTPException(status_code=404, detail="Customer not found")
+        return {"id": str(db_customer.id)}
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
 

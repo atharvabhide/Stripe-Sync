@@ -5,7 +5,7 @@ from sqlalchemy import (
 from sqlalchemy.schema import UniqueConstraint
 from db.database import Base
 from pydantic import BaseModel
-
+from typing import Optional
 
 class Customer(Base):
     '''
@@ -41,5 +41,6 @@ class CustomerCreateUpdate(BaseModel):
     email : str
         Customer email
     '''
+    id: Optional[str]
     name: str
     email: str

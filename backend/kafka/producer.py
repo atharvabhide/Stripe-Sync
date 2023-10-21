@@ -18,7 +18,8 @@ def publish_customer_event(event_type, data):
     try:
         message = {
             'event': event_type,
-            'data': data
+            'data': data,
+            'source': 'fastapi-customer',
         }
         producer.produce('customer', json.dumps(message).encode('utf-8'))
         producer.flush()
@@ -55,7 +56,5 @@ def publish_customer_deleted(customer_id):
     '''
     Publish a customer deleted event
     '''
-    data = {
-        'id': customer_id
-    }
+    data = customer_id
     publish_customer_event('customer_deleted', data)

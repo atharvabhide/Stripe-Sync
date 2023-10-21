@@ -26,13 +26,13 @@ def create_customer(db: Session, customer: Customer):
     except Exception as e:
         raise e
 
-def get_customer(db: Session, customer_id: uuid.UUID):
+def get_customer(db: Session, customer_id: str):
     '''
     Read a Customer
 
     Parameters
     ----------
-    customer_id : uuid.UUID
+    customer_id : str
         Customer id
     db: Session
         Database session
@@ -68,7 +68,7 @@ def get_customers(db: Session, skip: int = 0, limit: int = 100):
     except Exception as e:
         raise e
 
-def update_customer(db: Session, customer: Customer, customer_id: uuid.UUID):
+def update_customer(db: Session, customer: Customer, customer_id: str):
     '''
     Update a Customer
 
@@ -76,7 +76,7 @@ def update_customer(db: Session, customer: Customer, customer_id: uuid.UUID):
     ----------
     customer : Customer
         Customer data
-    customer_id : uuid.UUID
+    customer_id : str
         Customer id
     db: Session
         Database session
@@ -98,13 +98,13 @@ def update_customer(db: Session, customer: Customer, customer_id: uuid.UUID):
     except Exception as e:
         raise e
 
-def delete_customer(db: Session, customer_id: uuid.UUID):
+def delete_customer(db: Session, customer_id: str):
     '''
     Delete a Customer
 
     Parameters
     ----------
-    customer_id : uuid.UUID
+    customer_id : str
         Customer id
 
     Returns
@@ -119,5 +119,26 @@ def delete_customer(db: Session, customer_id: uuid.UUID):
             db.commit()
             return True
         return False
+    except Exception as e:
+        raise e
+
+def get_customer_from_email(db: Session, email: str):
+    '''
+    Read a Customer by email
+
+    Parameters
+    ----------
+    email : str
+        Customer email
+    db: Session
+        Database session
+
+    Returns
+    -------
+    Customer
+        The customer
+    '''
+    try:
+        return db.query(Customer).filter(Customer.email == email).first()
     except Exception as e:
         raise e
