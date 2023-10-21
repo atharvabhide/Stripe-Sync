@@ -40,7 +40,7 @@
 
 6) Create and start Docker containers for Kafka and Zookeeper:
    ```bash
-   docker-compose -f backend/kafka/docker_compose.yml up -d
+   docker-compose -f backend\kafka\docker_compose.yml up -d
    ```
 
 7) Expose port 8000 using ngrok:
