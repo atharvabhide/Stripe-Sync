@@ -70,7 +70,7 @@
       python backend\kafka\consumer.py
       ```
  
-12) Run the stripe webhook consumer/worker (in a separate terminal):
+12) Run the stripe webhook Kafka consumer/worker (in a separate terminal):
       ```bash
       python backend\kafka\stripe_consumer.py
       ```
