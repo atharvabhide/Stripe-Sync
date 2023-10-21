@@ -11,7 +11,7 @@ load_dotenv()
 stripe.api_key = os.getenv('STRIPE_API_KEY')
 
 consumer_conf = {
-    'bootstrap.servers': os.getenv('KAFKA_HOST'),
+    'bootstrap.servers': 'localhost:9092',
     'group.id': 'stripe-consumer-group',
     'auto.offset.reset': 'earliest',
 }

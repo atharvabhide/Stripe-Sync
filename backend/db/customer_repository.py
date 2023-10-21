@@ -1,6 +1,5 @@
 from sqlalchemy.orm import Session
 from models.customer import Customer
-import uuid
 
 def create_customer(db: Session, customer: Customer):
     '''

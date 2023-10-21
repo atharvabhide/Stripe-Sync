@@ -6,7 +6,7 @@ import os
 load_dotenv()
 
 conf = {
-    'bootstrap.servers': os.getenv('KAFKA_HOST'),
+    'bootstrap.servers': 'localhost:9092',
 }
 
 producer = Producer(conf)

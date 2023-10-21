@@ -23,7 +23,7 @@ app.add_middleware(
 )
 
 producer_conf = {
-    'bootstrap.servers': os.getenv('KAFKA_HOST'),
+    'bootstrap.servers': 'localhost:9092',
     'client.id': 'stripe-customer',
 }
 producer = Producer(producer_conf)
