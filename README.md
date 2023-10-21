@@ -88,3 +88,8 @@
       <li>Perform CRUD operations through the Stripe interface.</li>
       <li>The changes get reflected on the local system and can be observed on localhost:8080/docs through the read APIs.</li>
     </ul>
+
+15) To use the Streamlit dashboard for the outward sync (in a separate terminal):
+      ```bash
+      streamlit run frontend\app.py
+      ```
