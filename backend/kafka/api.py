@@ -39,10 +39,14 @@ def stripe_webhook(event: StripeEvent):
     This endpoint receives events from Stripe and publishes them to Kafka
 
     Parameters:
-        event (StripeEvent): The Stripe event
+    ----------
+    event : StripeEvent
+        Stripe event data
 
     Returns:
-        dict: A JSON response with a status message
+    -------
+    dict
+        Response message
     '''
     try:
         event_type = event.type

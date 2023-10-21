@@ -18,4 +18,7 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
 
 def create_tables():
+    '''
+    Create tables in the database
+    '''
     Base.metadata.create_all(bind=engine)

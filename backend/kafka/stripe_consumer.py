@@ -19,7 +19,20 @@ consumer_conf = {
 consumer = Consumer(consumer_conf)
 consumer.subscribe(['stripe-events'])
 
-def get_existing_customer(customer_email):
+def get_existing_customer(customer_email: str):
+    '''
+    Get existing customer from the local system
+
+    Parameters:
+    ----------
+    customer_email : str
+        Customer email
+
+    Returns:
+    -------
+    str
+        Customer ID
+    '''
     try:
         response = requests.get(f"http://127.0.0.1:8080/get_id/{customer_email}", headers={'Content-Type': 'application/json'})
         if response.status_code == 200:
@@ -43,6 +56,7 @@ while True:
     else:
         print('Received message: {}'.format(message.value().decode('utf-8')))
 
+        # Based on the message, perform customer creation or deletion or update
         message_data = json.loads(message.value())
         event_type = message_data['event']
         data = message_data['data']

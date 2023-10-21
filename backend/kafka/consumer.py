@@ -16,7 +16,20 @@ consumer_conf = {
 consumer = Consumer(consumer_conf)
 consumer.subscribe(['customer'])
 
-def get_existing_customer(customer_id):
+def get_existing_customer(customer_id: str):
+    '''
+    Get existing customer from Stripe
+
+    Parameters:
+    ----------
+    customer_id : str
+        Customer ID
+
+    Returns:
+    -------
+    stripe.Customer
+        Customer object
+    '''
     try:
         existing_customer = stripe.Customer.retrieve(customer_id)
         return existing_customer

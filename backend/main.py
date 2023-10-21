@@ -15,7 +15,6 @@ from models.customer import (
 from kafka.producer import (
     publish_customer_created, publish_customer_updated, publish_customer_deleted
 )
-import uuid
 
 app = FastAPI()
 
