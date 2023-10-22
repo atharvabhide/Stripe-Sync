@@ -1,5 +1,10 @@
 # Zenskar-Two-Way-Sync-App
 
+### Demo Video:
+
+https://github.com/atharvabhide/Zenskar-Two-Way-Sync-App/assets/67187699/61e36a65-82bb-4149-9823-69a448db068b
+
+
 ### System environment:
 1) Windows 11
 2) Anaconda Python 3.10.9 / Python 3.10.9 virtual environment (<a href='https://www.anaconda.com/download'>Link</a>)
