@@ -40,7 +40,7 @@
    create database <DB_NAME>
    ```
 
-6) Create an env file in the root folder:
+6) Create an env file in the backend folder (.env):
    
    ```bash
    DB_USERNAME = <YOUR_DB_USERNAME>
