@@ -2,10 +2,10 @@
 
 ### System environment:
 1) Windows 11
-2) Anaconda Python 3.10.9
-3) Docker Desktop
-4) MySQL 8.0
-5) ngrok
+2) Anaconda Python 3.10.9 / Python 3.10.9 virtual environment (<a href='https://www.anaconda.com/download'>Link</a>)
+3) Docker Desktop (<a href='https://www.docker.com/products/docker-desktop/'>Link</a>)
+4) MySQL 8.0 (<a href='https://dev.mysql.com/downloads/mysql/'>Link</a>)
+5) ngrok (<a href='https://ngrok.com/download'>Link</a>)
 
 ### Installation steps:
 1) Clone the repository:
