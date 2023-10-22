@@ -59,7 +59,7 @@
    ngrok http 8000
    ```
    
-9) Add the ngrok exposed url in the Web Hooks section of the Stripe Developer account: <a href='https://dashboard.stripe.com/test/webhooks'>https://dashboard.stripe.com/test/webhooks</a> with the following events:
+9) Add the ngrok exposed url (add /stripe-webhook to the url) in the Web Hooks section of the Stripe Developer account: <a href='https://dashboard.stripe.com/test/webhooks'>https://dashboard.stripe.com/test/webhooks</a> with the following events:
    <ul>
    <li>customer.created</li>
    <li>customer.updated</li>
