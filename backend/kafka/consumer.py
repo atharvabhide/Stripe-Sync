@@ -1,4 +1,6 @@
-from confluent_kafka import Consumer, KafkaError
+from confluent_kafka import (
+    Consumer, KafkaError
+)
 import json
 import stripe
 from dotenv import load_dotenv

@@ -1,4 +1,6 @@
-from confluent_kafka import Producer, KafkaError
+from confluent_kafka import (
+    Producer, KafkaError
+)
 import json
 from dotenv import load_dotenv
 import os

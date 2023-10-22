@@ -1,4 +1,4 @@
-## Integration of Salesforce (external system) with local system
+## Integration of Salesforce (external system) with local system's customer catalog
 
 1) ### Potential Salesforce Integration:
 <ul>
