@@ -1,8 +1,8 @@
-# Zenskar-Two-Way-Sync-App
+# StripeSync
 
 ### Demo Video:
 
-https://github.com/atharvabhide/Zenskar-Two-Way-Sync-App/assets/67187699/61e36a65-82bb-4149-9823-69a448db068b
+https://github.com/atharvabhide/StripeSync/assets/67187699/61e36a65-82bb-4149-9823-69a448db068b
 
 
 ### System environment:
