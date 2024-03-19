@@ -16,8 +16,8 @@ https://github.com/atharvabhide/StripeSync/assets/67187699/61e36a65-82bb-4149-98
 1) Clone the repository:
    
    ```bash
-   git clone https://github.com/atharvabhide/Zenskar-Two-Way-Sync-App.git
-   cd Zenskar-Two-Way-Sync-App
+   git clone https://github.com/atharvabhide/StripeSync.git
+   cd StripeSync
    ```
 
 2) Create a Python environment
