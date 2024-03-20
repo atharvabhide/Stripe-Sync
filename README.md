@@ -1,8 +1,8 @@
-# StripeSync
+# Stripe-Sync
 
 ### Demo Video:
 
-https://github.com/atharvabhide/StripeSync/assets/67187699/61e36a65-82bb-4149-9823-69a448db068b
+https://github.com/atharvabhide/Stripe-Sync/assets/67187699/61e36a65-82bb-4149-9823-69a448db068b
 
 
 ### System environment:
@@ -16,8 +16,8 @@ https://github.com/atharvabhide/StripeSync/assets/67187699/61e36a65-82bb-4149-98
 1) Clone the repository:
    
    ```bash
-   git clone https://github.com/atharvabhide/StripeSync.git
-   cd StripeSync
+   git clone https://github.com/atharvabhide/Stripe-Sync.git
+   cd Stripe-Sync
    ```
 
 2) Create a Python environment
